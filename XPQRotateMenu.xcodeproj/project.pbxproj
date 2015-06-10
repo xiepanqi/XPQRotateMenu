@@ -1,0 +1,433 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DFB4A64C1B28512500A7D4EF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB4A64B1B28512500A7D4EF /* main.m */; };
+		DFB4A64F1B28512500A7D4EF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB4A64E1B28512500A7D4EF /* AppDelegate.m */; };
+		DFB4A6521B28512500A7D4EF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB4A6511B28512500A7D4EF /* ViewController.m */; };
+		DFB4A6551B28512500A7D4EF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DFB4A6531B28512500A7D4EF /* Main.storyboard */; };
+		DFB4A6571B28512500A7D4EF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFB4A6561B28512500A7D4EF /* Images.xcassets */; };
+		DFB4A65A1B28512500A7D4EF /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFB4A6581B28512500A7D4EF /* LaunchScreen.xib */; };
+		DFB4A6661B28512500A7D4EF /* XPQRotateMenuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB4A6651B28512500A7D4EF /* XPQRotateMenuTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DFB4A6601B28512500A7D4EF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DFB4A63E1B28512500A7D4EF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DFB4A6451B28512500A7D4EF;
+			remoteInfo = XPQRotateMenu;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		DFB4A6461B28512500A7D4EF /* XPQRotateMenu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XPQRotateMenu.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DFB4A64A1B28512500A7D4EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DFB4A64B1B28512500A7D4EF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		DFB4A64D1B28512500A7D4EF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		DFB4A64E1B28512500A7D4EF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		DFB4A6501B28512500A7D4EF /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		DFB4A6511B28512500A7D4EF /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		DFB4A6541B28512500A7D4EF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		DFB4A6561B28512500A7D4EF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		DFB4A6591B28512500A7D4EF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		DFB4A65F1B28512500A7D4EF /* XPQRotateMenuTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XPQRotateMenuTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DFB4A6641B28512500A7D4EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DFB4A6651B28512500A7D4EF /* XPQRotateMenuTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XPQRotateMenuTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DFB4A6431B28512500A7D4EF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DFB4A65C1B28512500A7D4EF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DFB4A63D1B28512500A7D4EF = {
+			isa = PBXGroup;
+			children = (
+				DFB4A6481B28512500A7D4EF /* XPQRotateMenu */,
+				DFB4A6621B28512500A7D4EF /* XPQRotateMenuTests */,
+				DFB4A6471B28512500A7D4EF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DFB4A6471B28512500A7D4EF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DFB4A6461B28512500A7D4EF /* XPQRotateMenu.app */,
+				DFB4A65F1B28512500A7D4EF /* XPQRotateMenuTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DFB4A6481B28512500A7D4EF /* XPQRotateMenu */ = {
+			isa = PBXGroup;
+			children = (
+				DFB4A64D1B28512500A7D4EF /* AppDelegate.h */,
+				DFB4A64E1B28512500A7D4EF /* AppDelegate.m */,
+				DFB4A6501B28512500A7D4EF /* ViewController.h */,
+				DFB4A6511B28512500A7D4EF /* ViewController.m */,
+				DFB4A6531B28512500A7D4EF /* Main.storyboard */,
+				DFB4A6561B28512500A7D4EF /* Images.xcassets */,
+				DFB4A6581B28512500A7D4EF /* LaunchScreen.xib */,
+				DFB4A6491B28512500A7D4EF /* Supporting Files */,
+			);
+			path = XPQRotateMenu;
+			sourceTree = "<group>";
+		};
+		DFB4A6491B28512500A7D4EF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DFB4A64A1B28512500A7D4EF /* Info.plist */,
+				DFB4A64B1B28512500A7D4EF /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DFB4A6621B28512500A7D4EF /* XPQRotateMenuTests */ = {
+			isa = PBXGroup;
+			children = (
+				DFB4A6651B28512500A7D4EF /* XPQRotateMenuTests.m */,
+				DFB4A6631B28512500A7D4EF /* Supporting Files */,
+			);
+			path = XPQRotateMenuTests;
+			sourceTree = "<group>";
+		};
+		DFB4A6631B28512500A7D4EF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DFB4A6641B28512500A7D4EF /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DFB4A6451B28512500A7D4EF /* XPQRotateMenu */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DFB4A6691B28512500A7D4EF /* Build configuration list for PBXNativeTarget "XPQRotateMenu" */;
+			buildPhases = (
+				DFB4A6421B28512500A7D4EF /* Sources */,
+				DFB4A6431B28512500A7D4EF /* Frameworks */,
+				DFB4A6441B28512500A7D4EF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = XPQRotateMenu;
+			productName = XPQRotateMenu;
+			productReference = DFB4A6461B28512500A7D4EF /* XPQRotateMenu.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DFB4A65E1B28512500A7D4EF /* XPQRotateMenuTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DFB4A66C1B28512500A7D4EF /* Build configuration list for PBXNativeTarget "XPQRotateMenuTests" */;
+			buildPhases = (
+				DFB4A65B1B28512500A7D4EF /* Sources */,
+				DFB4A65C1B28512500A7D4EF /* Frameworks */,
+				DFB4A65D1B28512500A7D4EF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DFB4A6611B28512500A7D4EF /* PBXTargetDependency */,
+			);
+			name = XPQRotateMenuTests;
+			productName = XPQRotateMenuTests;
+			productReference = DFB4A65F1B28512500A7D4EF /* XPQRotateMenuTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DFB4A63E1B28512500A7D4EF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = "谢攀琪";
+				TargetAttributes = {
+					DFB4A6451B28512500A7D4EF = {
+						CreatedOnToolsVersion = 6.3.2;
+					};
+					DFB4A65E1B28512500A7D4EF = {
+						CreatedOnToolsVersion = 6.3.2;
+						TestTargetID = DFB4A6451B28512500A7D4EF;
+					};
+				};
+			};
+			buildConfigurationList = DFB4A6411B28512500A7D4EF /* Build configuration list for PBXProject "XPQRotateMenu" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DFB4A63D1B28512500A7D4EF;
+			productRefGroup = DFB4A6471B28512500A7D4EF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DFB4A6451B28512500A7D4EF /* XPQRotateMenu */,
+				DFB4A65E1B28512500A7D4EF /* XPQRotateMenuTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DFB4A6441B28512500A7D4EF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DFB4A6551B28512500A7D4EF /* Main.storyboard in Resources */,
+				DFB4A65A1B28512500A7D4EF /* LaunchScreen.xib in Resources */,
+				DFB4A6571B28512500A7D4EF /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DFB4A65D1B28512500A7D4EF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DFB4A6421B28512500A7D4EF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DFB4A6521B28512500A7D4EF /* ViewController.m in Sources */,
+				DFB4A64F1B28512500A7D4EF /* AppDelegate.m in Sources */,
+				DFB4A64C1B28512500A7D4EF /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DFB4A65B1B28512500A7D4EF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DFB4A6661B28512500A7D4EF /* XPQRotateMenuTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DFB4A6611B28512500A7D4EF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DFB4A6451B28512500A7D4EF /* XPQRotateMenu */;
+			targetProxy = DFB4A6601B28512500A7D4EF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		DFB4A6531B28512500A7D4EF /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DFB4A6541B28512500A7D4EF /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		DFB4A6581B28512500A7D4EF /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DFB4A6591B28512500A7D4EF /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DFB4A6671B28512500A7D4EF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DFB4A6681B28512500A7D4EF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DFB4A66A1B28512500A7D4EF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = XPQRotateMenu/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		DFB4A66B1B28512500A7D4EF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = XPQRotateMenu/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		DFB4A66D1B28512500A7D4EF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = XPQRotateMenuTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/XPQRotateMenu.app/XPQRotateMenu";
+			};
+			name = Debug;
+		};
+		DFB4A66E1B28512500A7D4EF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = XPQRotateMenuTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/XPQRotateMenu.app/XPQRotateMenu";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DFB4A6411B28512500A7D4EF /* Build configuration list for PBXProject "XPQRotateMenu" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DFB4A6671B28512500A7D4EF /* Debug */,
+				DFB4A6681B28512500A7D4EF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DFB4A6691B28512500A7D4EF /* Build configuration list for PBXNativeTarget "XPQRotateMenu" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DFB4A66A1B28512500A7D4EF /* Debug */,
+				DFB4A66B1B28512500A7D4EF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		DFB4A66C1B28512500A7D4EF /* Build configuration list for PBXNativeTarget "XPQRotateMenuTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DFB4A66D1B28512500A7D4EF /* Debug */,
+				DFB4A66E1B28512500A7D4EF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DFB4A63E1B28512500A7D4EF /* Project object */;
+}
