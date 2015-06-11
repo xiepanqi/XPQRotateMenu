@@ -65,15 +65,6 @@
         intersection.transform = CGAffineTransformMakeRotation(M_PI_4);
         self.intersection = intersection;
         [self addSubview:intersection];
-        
-        // 上滑响应
-        UISwipeGestureRecognizer *upRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom:)];
-        upRecognizer.direction = UISwipeGestureRecognizerDirectionUp;
-        [self addGestureRecognizer:upRecognizer];
-        // 下滑响应
-        UISwipeGestureRecognizer *downRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom:)];
-        downRecognizer.direction = UISwipeGestureRecognizerDirectionDown;
-        [self addGestureRecognizer:downRecognizer];
     }
     return self;
 }
@@ -86,6 +77,15 @@
     self.hideDireUp = NO;
     self.handleHideEnable = YES;
     _expand = YES;
+        
+    // 上滑响应
+    UISwipeGestureRecognizer *upRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom:)];
+    upRecognizer.direction = UISwipeGestureRecognizerDirectionUp;
+    [self addGestureRecognizer:upRecognizer];
+    // 下滑响应
+    UISwipeGestureRecognizer *downRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom:)];
+    downRecognizer.direction = UISwipeGestureRecognizerDirectionDown;
+    [self addGestureRecognizer:downRecognizer];
 }
 
 #pragma mark - 属性
