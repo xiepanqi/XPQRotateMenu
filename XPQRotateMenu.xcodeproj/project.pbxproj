@@ -14,6 +14,8 @@
 		DFB4A6571B28512500A7D4EF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFB4A6561B28512500A7D4EF /* Images.xcassets */; };
 		DFB4A65A1B28512500A7D4EF /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DFB4A6581B28512500A7D4EF /* LaunchScreen.xib */; };
 		DFB4A6661B28512500A7D4EF /* XPQRotateMenuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB4A6651B28512500A7D4EF /* XPQRotateMenuTests.m */; };
+		DFB4A6721B28524F00A7D4EF /* XPQRotateMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB4A6711B28524F00A7D4EF /* XPQRotateMenu.m */; };
+		DFB4A6751B28534500A7D4EF /* XPQRotateItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DFB4A6741B28534500A7D4EF /* XPQRotateItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +42,10 @@
 		DFB4A65F1B28512500A7D4EF /* XPQRotateMenuTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XPQRotateMenuTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFB4A6641B28512500A7D4EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DFB4A6651B28512500A7D4EF /* XPQRotateMenuTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XPQRotateMenuTests.m; sourceTree = "<group>"; };
+		DFB4A6701B28524F00A7D4EF /* XPQRotateMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPQRotateMenu.h; sourceTree = "<group>"; };
+		DFB4A6711B28524F00A7D4EF /* XPQRotateMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPQRotateMenu.m; sourceTree = "<group>"; };
+		DFB4A6731B28534500A7D4EF /* XPQRotateItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPQRotateItem.h; sourceTree = "<group>"; };
+		DFB4A6741B28534500A7D4EF /* XPQRotateItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPQRotateItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +87,7 @@
 		DFB4A6481B28512500A7D4EF /* XPQRotateMenu */ = {
 			isa = PBXGroup;
 			children = (
+				DFB4A66F1B28517300A7D4EF /* XPQRotateMenu */,
 				DFB4A64D1B28512500A7D4EF /* AppDelegate.h */,
 				DFB4A64E1B28512500A7D4EF /* AppDelegate.m */,
 				DFB4A6501B28512500A7D4EF /* ViewController.h */,
@@ -117,6 +124,17 @@
 				DFB4A6641B28512500A7D4EF /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DFB4A66F1B28517300A7D4EF /* XPQRotateMenu */ = {
+			isa = PBXGroup;
+			children = (
+				DFB4A6701B28524F00A7D4EF /* XPQRotateMenu.h */,
+				DFB4A6711B28524F00A7D4EF /* XPQRotateMenu.m */,
+				DFB4A6731B28534500A7D4EF /* XPQRotateItem.h */,
+				DFB4A6741B28534500A7D4EF /* XPQRotateItem.m */,
+			);
+			name = XPQRotateMenu;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -220,8 +238,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				DFB4A6521B28512500A7D4EF /* ViewController.m in Sources */,
+				DFB4A6751B28534500A7D4EF /* XPQRotateItem.m in Sources */,
 				DFB4A64F1B28512500A7D4EF /* AppDelegate.m in Sources */,
 				DFB4A64C1B28512500A7D4EF /* main.m in Sources */,
+				DFB4A6721B28524F00A7D4EF /* XPQRotateMenu.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

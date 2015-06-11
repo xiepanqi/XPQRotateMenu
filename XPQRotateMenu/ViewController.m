@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "XPQRotateMenu.h"
 
 @interface ViewController ()
 
@@ -17,6 +18,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    NSArray *arr = @[@"菜单1",@"菜单2",@"菜单3",@"菜单4",@"菜单5",@"菜单6",@"菜单7",@"菜单8",@"菜单9",@"菜单10"];
+    XPQRotateMenu *menu = [[XPQRotateMenu alloc] initWithTitleArray:arr];
+    menu.intersectionImage = [UIImage imageNamed:@"cancleIcon"];
+    [self.view addSubview:menu];
 }
 
 - (void)didReceiveMemoryWarning {
