@@ -46,6 +46,7 @@
 		DFB4A6711B28524F00A7D4EF /* XPQRotateMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPQRotateMenu.m; sourceTree = "<group>"; };
 		DFB4A6731B28534500A7D4EF /* XPQRotateItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPQRotateItem.h; sourceTree = "<group>"; };
 		DFB4A6741B28534500A7D4EF /* XPQRotateItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPQRotateItem.m; sourceTree = "<group>"; };
+		E46E3A2D1B760265004C63A2 /* XPQRotateMenuDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XPQRotateMenuDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +134,7 @@
 				DFB4A6711B28524F00A7D4EF /* XPQRotateMenu.m */,
 				DFB4A6731B28534500A7D4EF /* XPQRotateItem.h */,
 				DFB4A6741B28534500A7D4EF /* XPQRotateItem.m */,
+				E46E3A2D1B760265004C63A2 /* XPQRotateMenuDelegate.h */,
 			);
 			name = XPQRotateMenu;
 			sourceTree = "<group>";
@@ -438,6 +440,7 @@
 				DFB4A66B1B28512500A7D4EF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DFB4A66C1B28512500A7D4EF /* Build configuration list for PBXNativeTarget "XPQRotateMenuTests" */ = {
 			isa = XCConfigurationList;
@@ -446,6 +449,7 @@
 				DFB4A66E1B28512500A7D4EF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

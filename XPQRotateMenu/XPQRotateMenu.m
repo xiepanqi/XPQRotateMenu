@@ -70,11 +70,11 @@
 }
 
 -(void)configSelf {
-    self.frame = [UIScreen mainScreen].bounds;
+    self.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width + 25, [UIScreen mainScreen].bounds.size.height);
     self.menuItemArray = [NSMutableArray array];
     self.backgroundColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:1];
-    self.showDireUp = YES;
-    self.hideDireUp = NO;
+    self.showClockwise = YES;
+    self.hideClockwise = NO;
     self.handleHideEnable = YES;
     _expand = YES;
         
@@ -106,7 +106,7 @@
 #pragma mark - 左右滑动
 -(void)handleSwipeFrom:(UISwipeGestureRecognizer *)recognizer {
     if (self.handleHideEnable) {
-        [self hideMenu:(recognizer.direction == UISwipeGestureRecognizerDirectionUp)];
+        [self hideMenu:(recognizer.direction == UISwipeGestureRecognizerDirectionDown)];
     }
 }
 
@@ -118,7 +118,7 @@
         }
     }
     
-    [self hideMenu:self.hideDireUp];
+    [self hideMenu:self.hideClockwise];
     
     if ([self.delegate respondsToSelector:@selector(didClickMenuItem:)]) {
         [self.delegate didClickMenuItem:self.menuItemArray[sender.tag - MenuItemTag]];
@@ -133,10 +133,10 @@
     }
     
     if (self.expand) {
-        [self hideMenu:self.hideDireUp];
+        [self hideMenu:self.hideClockwise];
     }
     else {
-        [self showMenu:self.showDireUp];
+        [self showMenu:self.showClockwise];
     }
     
     if ([self.delegate respondsToSelector:@selector(didClickIntersection)]) {
@@ -144,8 +144,8 @@
     }
 }
 
-#pragma mark - 显示隐藏动画
--(void)showMenu:(BOOL)direUp {
+#pragma mark - 菜单显示隐藏
+-(void)showMenu:(BOOL)isClockwise {
     if ([self.delegate respondsToSelector:@selector(shouldShowMenu)]) {
         if ([self.delegate shouldShowMenu] == NO) {
             return;
@@ -155,9 +155,9 @@
     if (!self.expand && self.menuItemArray.count > 1) {
         _expand = YES;
         
-        [self rotateButtounAnimation:direUp];
+        [self rotateButtounAnimation:isClockwise];
         [self showBackgroundAnimation];
-        [self showMenuItemAnimation:direUp];
+        [self showMenuItemAnimation:isClockwise];
     }
     
     if ([self.delegate respondsToSelector:@selector(didShowMenu)]) {
@@ -165,7 +165,7 @@
     }
 }
 
--(void)hideMenu:(BOOL)direUp {
+-(void)hideMenu:(BOOL)isClockwise {
     if ([self.delegate respondsToSelector:@selector(shouldHideMenu)]) {
         if ([self.delegate shouldHideMenu] == NO) {
             return;
@@ -175,9 +175,9 @@
     if (self.expand && self.menuItemArray.count > 1) {
         _expand = NO;
         
-        [self rotateButtounAnimation:!direUp];
+        [self rotateButtounAnimation:isClockwise];
         [self hideBackgroundAnimation];
-        [self hideMenuItemAnimation:!direUp];
+        [self hideMenuItemAnimation:isClockwise];
     }
     
     if ([self.delegate respondsToSelector:@selector(didHideMenu)]) {
@@ -192,7 +192,7 @@
 #pragma mark -动画
 /**
  *  @brief  菜单项显示时的转动动画
- *  @param isUp 旋转方向，YES-顺时针,NO-逆时钟
+ *  @param isClockwise 旋转方向，YES-顺时针,NO-逆时钟
  */
 -(void)showMenuItemAnimation:(BOOL)isClockwise {
     CGFloat unitAngle = M_PI / (self.menuItemArray.count - 1) * 2 / 3;
