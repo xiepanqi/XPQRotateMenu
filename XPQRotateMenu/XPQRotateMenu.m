@@ -155,39 +155,9 @@
     if (!self.expand && self.menuItemArray.count > 1) {
         _expand = YES;
         
-        [UIView beginAnimations:@"test" context:nil];
-        [UIView setAnimationDuration:0.75];
-        self.frame = [UIScreen mainScreen].bounds;
-        self.intersection.center = CGPointMake(25, self.frame.size.height / 2);
-        for (UIView *item in self.menuItemArray) {
-            item.center = CGPointMake(25, self.frame.size.height / 2);
-        }
-        if (direUp) {
-            self.intersection.transform = CGAffineTransformRotate(self.intersection.transform, M_PI_4);
-        }
-        else {
-            self.intersection.transform = CGAffineTransformRotate(self.intersection.transform, -M_PI_4);
-        }
-        [UIView commitAnimations];
-        
-        CGFloat unitAngle = M_PI / (self.menuItemArray.count - 1) * 2 / 3;
-        CGFloat angle = M_PI * 2 / 3;
-        if (direUp) {
-            angle -= (2 * M_PI);
-        }
-        for (int i = 0; i < self.menuItemArray.count; i++) {
-            CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
-            animation.fromValue = [NSNumber numberWithFloat:angle];
-            animation.toValue = [NSNumber numberWithFloat:0];
-            animation.duration = 0.75;
-            animation.cumulative = YES;
-            animation.additive = YES;
-            animation.removedOnCompletion = NO;
-            animation.fillMode = kCAFillModeForwards;
-            [self.menuItemArray[i] addAnimation:animation forKey:@"rotation"];
-            
-            angle += unitAngle;
-        }
+        [self rotateButtounAnimation:direUp];
+        [self showBackgroundAnimation];
+        [self showMenuItemAnimation:direUp];
     }
     
     if ([self.delegate respondsToSelector:@selector(didShowMenu)]) {
@@ -205,42 +175,9 @@
     if (self.expand && self.menuItemArray.count > 1) {
         _expand = NO;
         
-        [UIView beginAnimations:@"test" context:nil];
-        [UIView setAnimationDuration:0.75];
-        // 把背景视图变小
-        self.frame = CGRectMake(-20, self.frame.size.height / 2 - 20, 45, 40);
-        // 菜单项和按钮位置不变化
-        self.intersection.center = CGPointMake(25, self.frame.size.height / 2);
-        for (UIView *item in self.menuItemArray) {
-            item.center = CGPointMake(25, self.frame.size.height / 2);
-        }
-        // 交汇按钮转动
-        if (direUp) {
-            self.intersection.transform = CGAffineTransformRotate(self.intersection.transform, -M_PI_4);
-        }
-        else {
-            self.intersection.transform = CGAffineTransformRotate(self.intersection.transform, M_PI_4);
-        }
-        [UIView commitAnimations];
-        
-        CGFloat unitAngle = M_PI / (self.menuItemArray.count - 1) * 2 / 3;
-        CGFloat angle = (self.menuItemArray.count - 1) * unitAngle + M_PI * 2 / 3;
-        if (direUp) {
-            angle -= (2 * M_PI);
-        }
-        for (NSInteger i = self.menuItemArray.count - 1; i >= 0; i--) {
-            CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
-            animation.fromValue = [NSNumber numberWithFloat:0];
-            animation.toValue = [NSNumber numberWithFloat:angle];
-            animation.duration = 0.75;
-            animation.cumulative = YES;
-            animation.additive = YES;
-            animation.removedOnCompletion = NO;
-            animation.fillMode = kCAFillModeForwards;
-            [self.menuItemArray[i] addAnimation:animation forKey:@"rotation"];
-            
-            angle -= unitAngle;
-        }
+        [self rotateButtounAnimation:!direUp];
+        [self hideBackgroundAnimation];
+        [self hideMenuItemAnimation:!direUp];
     }
     
     if ([self.delegate respondsToSelector:@selector(didHideMenu)]) {
@@ -250,5 +187,113 @@
 
 -(XPQRotateItem *)menuItemWithIndex:(NSInteger)index {
     return self.menuItemArray[index];
+}
+
+#pragma mark -动画
+/**
+ *  @brief  菜单项显示时的转动动画
+ *  @param isUp 旋转方向，YES-顺时针,NO-逆时钟
+ */
+-(void)showMenuItemAnimation:(BOOL)isClockwise {
+    CGFloat unitAngle = M_PI / (self.menuItemArray.count - 1) * 2 / 3;
+    CGFloat angle = M_PI * 2 / 3;
+    if (isClockwise) {
+        angle -= (2 * M_PI);
+    }
+    for (int i = 0; i < self.menuItemArray.count; i++) {
+        CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+        animation.fromValue = [NSNumber numberWithFloat:angle];
+        animation.toValue = [NSNumber numberWithFloat:0];
+        animation.duration = 0.75;
+        animation.cumulative = YES;
+        animation.additive = YES;
+        animation.removedOnCompletion = NO;
+        animation.fillMode = kCAFillModeForwards;
+        [self.menuItemArray[i] addAnimation:animation forKey:@"rotationMenuItem"];
+        
+        angle += unitAngle;
+    }
+}
+
+/**
+ *  @brief  菜单项隐藏时的转动动画
+ *  @param isUp 旋转方向，YES-顺时针,NO-逆时钟
+ */
+-(void)hideMenuItemAnimation:(BOOL)isClockwise {
+    CGFloat unitAngle = M_PI / (self.menuItemArray.count - 1) * 2 / 3;
+    CGFloat angle = (self.menuItemArray.count - 1) * unitAngle + M_PI * 2 / 3;
+    if (!isClockwise) {
+        angle -= (2 * M_PI);
+    }
+    for (NSInteger i = self.menuItemArray.count - 1; i >= 0; i--) {
+        CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+        animation.fromValue = [NSNumber numberWithFloat:0];
+        animation.toValue = [NSNumber numberWithFloat:angle];
+        animation.duration = 0.75;
+        animation.cumulative = YES;
+        animation.additive = YES;
+        animation.removedOnCompletion = NO;
+        animation.fillMode = kCAFillModeForwards;
+        [self.menuItemArray[i] addAnimation:animation forKey:@"rotationMenuItem"];
+        
+        angle -= unitAngle;
+    }
+}
+
+/**
+ *  @brief  背景显示动画
+ */
+-(void)showBackgroundAnimation {
+    // 先把背景铺满全屏，
+    self.frame = CGRectMake(-20, 0, [UIScreen mainScreen].bounds.size.width + 25, [UIScreen mainScreen].bounds.size.height);
+    // 和调整好按钮的位置
+    self.intersection.center = CGPointMake(25, self.frame.size.height / 2);
+    for (UIView *item in self.menuItemArray) {
+        item.center = CGPointMake(25, self.frame.size.height / 2);
+    }
+    // 慢慢显示背景，并向右移动使菜单完全显示
+    [UIView beginAnimations:@"showBackgroundAnimation" context:nil];
+    [UIView setAnimationDuration:0.75];
+    self.center = CGPointMake(self.center.x + 20, self.center.y);
+    self.backgroundColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:1.0];
+    [UIView commitAnimations];
+}
+
+/**
+ *  @brief  背景隐藏动画
+ */
+-(void)hideBackgroundAnimation {
+    // 慢慢隐藏背景，并向左移动使部分菜单被遮掩
+    [UIView beginAnimations:@"hideBackgroundAnimation" context:nil];
+    [UIView setAnimationDuration:0.75];
+    [UIView setAnimationDelegate:self];
+    self.center = CGPointMake(self.center.x - 20, self.center.y);
+    self.backgroundColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.0];
+    [UIView commitAnimations];
+}
+
+-(void)rotateButtounAnimation:(BOOL)isClockwise {
+    [UIView beginAnimations:@"test" context:nil];
+    [UIView setAnimationDuration:0.75];
+    // 交汇按钮转动
+    if (isClockwise) {
+        self.intersection.transform = CGAffineTransformRotate(self.intersection.transform, M_PI_4);
+    }
+    else {
+        self.intersection.transform = CGAffineTransformRotate(self.intersection.transform, -M_PI_4);
+    }
+    [UIView commitAnimations];
+}
+
+-(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
+    // 隐藏背景动画结束后把背景视图缩小
+    if ([(NSString*)anim isEqualToString:@"hideBackgroundAnimation"]) {
+        self.frame = CGRectMake(-20, self.frame.size.height / 2 - 20, 45, 40);
+        // 让菜单项和按钮看上去位置不变化
+        self.intersection.center = CGPointMake(25, self.frame.size.height / 2);
+        for (UIView *item in self.menuItemArray) {
+            item.center = CGPointMake(25, self.frame.size.height / 2);
+        }
+    }
 }
 @end
