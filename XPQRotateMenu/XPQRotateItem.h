@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+#define MenuItemHight       40
+#define MenuItemAnchor      20          // MenuItemAnchor = MenuItemHight / 2
+
 #define MenuItemTag         0x400
 
 @interface XPQRotateItem : UIView
