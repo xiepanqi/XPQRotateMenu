@@ -14,9 +14,19 @@
 #define MenuItemTag         0x400
 
 @interface XPQRotateItem : UIView
--(instancetype) initWithIndex:(NSInteger)index title:(NSString *)title target:(id)target action:(SEL)action;
+/**
+ *  @brief  初始化菜单项
+ *  @param index  索引
+ *  @param target 目标
+ *  @param action 回调函数
+ *  @return 菜单项指针
+ */
+-(instancetype) initWithIndex:(NSInteger)index target:(id)target action:(SEL)action;
+
 /// 菜单项索引
 @property (nonatomic, readonly) NSInteger index;
-/// 菜单项标题
-@property (nonatomic, readonly) NSString *title;
+/// 标题
+@property (nonatomic) NSString *title;
+/// 带属性标题
+@property (nonatomic) NSAttributedString *attributedTitle;
 @end

@@ -26,7 +26,7 @@
 
 /**
  *  @brief 根据一个数组来创建菜单项
- *  @param  array   要创建的菜单项标题，必须是你是NSString
+ *  @param  array   要创建的菜单项标题，可以是NSString或者NSAttributedString
  *  @return 创建的对象
  */
 -(instancetype)initWithTitleArray:(NSArray *)array;

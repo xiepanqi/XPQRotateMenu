@@ -14,7 +14,7 @@
 
 @implementation XPQRotateItem
 
--(instancetype)initWithIndex:(NSInteger)index title:(NSString *)title target:(id)target action:(SEL)action {
+-(instancetype)initWithIndex:(NSInteger)index target:(id)target action:(SEL)action {
     CGFloat itemWidth = [UIScreen mainScreen].bounds.size.height / 2;
     self = [super initWithFrame:CGRectMake(0, 0, itemWidth, MenuItemHight)];
     if (self) {
@@ -30,10 +30,9 @@
         
         UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(MenuItemHight + 10, 0, self.frame.size.width - 70, self.frame.size.height)];
         button.tag = MenuItemTag + index;
-        [button setTitle:title forState:(UIControlStateNormal)];
-        [button setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
+        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
-        [button addTarget:target action:action forControlEvents:(UIControlEventTouchUpInside)];
+        [button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
         self.button = button;
         [self addSubview:button];
     }
@@ -46,6 +45,18 @@
 }
 
 -(NSString *)title {
-    return [self.button titleForState:(UIControlStateNormal)];
+    return [self.button titleForState:UIControlStateNormal];
+}
+
+-(void)setTitle:(NSString *)title {
+    [self.button setTitle:title forState:UIControlStateNormal];
+}
+
+-(NSAttributedString *)attributedTitle {
+    return [self.button attributedTitleForState:UIControlStateNormal];
+}
+
+-(void)setAttributedTitle:(NSAttributedString *)attributedTitle {
+    [self.button setAttributedTitle:attributedTitle forState:UIControlStateNormal];
 }
 @end

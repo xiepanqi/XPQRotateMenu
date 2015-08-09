@@ -77,7 +77,13 @@
 -(void)configSubview:(NSArray *)title {
     if (title.count > 1) {
         for (NSInteger i = title.count - 1; i >= 0; i--) {
-            XPQRotateItem *menuItem = [[XPQRotateItem alloc] initWithIndex:i title:title[i] target:self action:@selector(actionMenuItem:)];
+            XPQRotateItem *menuItem = [[XPQRotateItem alloc] initWithIndex:i target:self action:@selector(actionMenuItem:)];
+            if ([title[i] isKindOfClass:[NSString class]]) {
+                menuItem.title = title[i];
+            }
+            else if ([title[i] isKindOfClass:[NSAttributedString class]]) {
+                menuItem.attributedTitle = title[i];
+            }
             menuItem.transform = CGAffineTransformMakeRotation(M_PI);
             menuItem.center = CGPointMake(20, 20);
             [self addSubview:menuItem];
