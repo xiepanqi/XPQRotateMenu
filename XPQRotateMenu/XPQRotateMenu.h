@@ -11,6 +11,10 @@
 #import "XPQRotateMenuDelegate.h"
 
 @interface XPQRotateMenu : UIView
+/// 动画时间,默认0.75
+@property (nonatomic) NSTimeInterval time;
+/// 展开时背景色，默认r:0.5 g:0.5 r:0.5 a:1.0
+@property (nonatomic) UIColor *backgroundColor;
 /// 是否展开
 @property (nonatomic, readonly, getter=isExpand) BOOL expand;
 /// 交汇处按钮图片

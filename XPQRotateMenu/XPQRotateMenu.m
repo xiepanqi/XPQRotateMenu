@@ -58,7 +58,9 @@
     self.bounds = CGRectMake(0, 0, MenuItemHight, MenuItemHight);
     self.center = CGPointMake(5, [UIScreen mainScreen].bounds.size.height / 2);
     self.menuItemArray = [NSMutableArray array];
-    self.backgroundColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0];
+    self.time = 0.75;
+    self.backgroundColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:1.0];
+    super.backgroundColor = [self.backgroundColor colorWithAlphaComponent:0.0];
     self.showClockwise = YES;
     self.hideClockwise = NO;
     self.handleHideEnable = YES;
@@ -215,7 +217,7 @@
         CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
         animation.fromValue = [NSNumber numberWithFloat:0];
         animation.toValue = [NSNumber numberWithFloat:angle];
-        animation.duration = 0.75;
+        animation.duration = self.time;
         animation.cumulative = YES;
         animation.additive = YES;
         animation.removedOnCompletion = NO;
@@ -240,7 +242,7 @@
         CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
         animation.fromValue = [NSNumber numberWithFloat:angle];
         animation.toValue = [NSNumber numberWithFloat:0];
-        animation.duration = 0.75;
+        animation.duration = self.time;
         animation.cumulative = YES;
         animation.additive = YES;
         animation.removedOnCompletion = NO;
@@ -264,9 +266,9 @@
     }
     // 慢慢显示背景，并向右移动使菜单完全显示
     [UIView beginAnimations:@"showBackgroundAnimation" context:nil];
-    [UIView setAnimationDuration:0.75];
+    [UIView setAnimationDuration:self.time];
     self.center = CGPointMake(self.center.x + 20, self.center.y);
-    self.backgroundColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:1.0];
+    super.backgroundColor = self.backgroundColor;
     [UIView commitAnimations];
 }
 
@@ -276,16 +278,16 @@
 -(void)hideBackgroundAnimation {
     // 慢慢隐藏背景，并向左移动使部分菜单被遮掩
     [UIView beginAnimations:@"hideBackgroundAnimation" context:nil];
-    [UIView setAnimationDuration:0.75];
+    [UIView setAnimationDuration:self.time];
     [UIView setAnimationDelegate:self];
     self.center = CGPointMake(self.center.x - 20, self.center.y);
-    self.backgroundColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.0];
+    super.backgroundColor = [self.backgroundColor colorWithAlphaComponent:0.0];
     [UIView commitAnimations];
 }
 
 -(void)rotateButtounAnimation:(BOOL)isClockwise {
     [UIView beginAnimations:@"test" context:nil];
-    [UIView setAnimationDuration:0.75];
+    [UIView setAnimationDuration:self.time];
     // 交汇按钮转动
     if (isClockwise) {
         self.intersection.transform = CGAffineTransformRotate(self.intersection.transform, M_PI_4);
