@@ -19,7 +19,6 @@
     self = [super initWithFrame:CGRectMake(0, 0, itemWidth, MenuItemHight)];
     if (self) {
         self.backgroundColor = [UIColor whiteColor];
-        self.center = CGPointMake(MenuItemAnchor, [UIScreen mainScreen].bounds.size.height / 2);
         self.layer.cornerRadius = 5;
         self.layer.anchorPoint = CGPointMake(MenuItemAnchor / [UIScreen mainScreen].bounds.size.width, 0.5);
         

@@ -8,6 +8,7 @@
 
 #import "XPQRotateMenu.h"
 
+#define hideWith                25
 
 @interface XPQRotateMenu ()
 @property (nonatomic) NSMutableArray *menuItemArray;
@@ -48,35 +49,20 @@
     self = [super init];
     if (self) {
         [self configSelf];
-
-        if (array.count > 1) {
-            CGFloat angle = M_PI / (array.count - 1) * 2 / 3;
-            for (NSInteger i = array.count - 1; i >= 0; i--) {
-                XPQRotateItem *menuItem = [[XPQRotateItem alloc] initWithIndex:i title:array[i] target:self action:@selector(actionMenuItem:)];
-                menuItem.transform = CGAffineTransformMakeRotation(angle * i - M_PI / 3);
-                [self addSubview:menuItem];
-                [self.menuItemArray addObject:menuItem];
-            }
-        }
-        
-        UIButton *intersection = [[UIButton alloc] initWithFrame:CGRectMake(10, self.frame.size.height / 2 - 15, 30, 30)];
-        [intersection setTitle:@"➕" forState:(UIControlStateNormal)];
-        [intersection addTarget:self action:@selector(actionIntersection:) forControlEvents:(UIControlEventTouchUpInside)];
-        intersection.transform = CGAffineTransformMakeRotation(M_PI_4);
-        self.intersection = intersection;
-        [self addSubview:intersection];
+        [self configSubview:array];
     }
     return self;
 }
 
 -(void)configSelf {
-    self.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width + 25, [UIScreen mainScreen].bounds.size.height);
+    self.bounds = CGRectMake(0, 0, MenuItemHight, MenuItemHight);
+    self.center = CGPointMake(5, [UIScreen mainScreen].bounds.size.height / 2);
     self.menuItemArray = [NSMutableArray array];
-    self.backgroundColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:1];
+    self.backgroundColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0];
     self.showClockwise = YES;
     self.hideClockwise = NO;
     self.handleHideEnable = YES;
-    _expand = YES;
+    _expand = NO;
         
     // 上滑响应
     UISwipeGestureRecognizer *upRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom:)];
@@ -88,19 +74,38 @@
     [self addGestureRecognizer:downRecognizer];
 }
 
+-(void)configSubview:(NSArray *)title {
+    if (title.count > 1) {
+        for (NSInteger i = title.count - 1; i >= 0; i--) {
+            XPQRotateItem *menuItem = [[XPQRotateItem alloc] initWithIndex:i title:title[i] target:self action:@selector(actionMenuItem:)];
+            menuItem.transform = CGAffineTransformMakeRotation(M_PI);
+            menuItem.center = CGPointMake(20, 20);
+            [self addSubview:menuItem];
+            [self.menuItemArray addObject:menuItem];
+        }
+        
+        UIButton *intersection = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+        intersection.center = CGPointMake(20, 20);
+        [intersection setTitle:@"➕" forState:(UIControlStateNormal)];
+        [intersection addTarget:self action:@selector(actionIntersection:) forControlEvents:(UIControlEventTouchUpInside)];
+        self.intersection = intersection;
+        [self addSubview:intersection];
+    }
+}
+
 #pragma mark - 属性
 -(void)setIntersectionImage:(UIImage *)intersectionImage {
     if (intersectionImage == nil) {
-        [self.intersection setTitle:@"➕" forState:(UIControlStateNormal)];
+        [self.intersection setTitle:@"➕" forState:UIControlStateNormal];
     }
     else {
-        [self.intersection setTitle:@"" forState:(UIControlStateNormal)];
+        [self.intersection setTitle:@"" forState:UIControlStateNormal];
     }
-    [self.intersection setImage:intersectionImage forState:(UIControlStateNormal)];
+    [self.intersection setImage:intersectionImage forState:UIControlStateNormal];
 }
 
 -(UIImage *)intersectionImage {
-    return [self.intersection imageForState:(UIControlStateNormal)];
+    return [self.intersection imageForState:UIControlStateNormal];
 }
 
 #pragma mark - 左右滑动
@@ -197,19 +202,19 @@
 -(void)showMenuItemAnimation:(BOOL)isClockwise {
     CGFloat unitAngle = M_PI / (self.menuItemArray.count - 1) * 2 / 3;
     CGFloat angle = M_PI * 2 / 3;
-    if (isClockwise) {
+    if (!isClockwise) {
         angle -= (2 * M_PI);
     }
     for (int i = 0; i < self.menuItemArray.count; i++) {
         CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
-        animation.fromValue = [NSNumber numberWithFloat:angle];
-        animation.toValue = [NSNumber numberWithFloat:0];
+        animation.fromValue = [NSNumber numberWithFloat:0];
+        animation.toValue = [NSNumber numberWithFloat:angle];
         animation.duration = 0.75;
         animation.cumulative = YES;
         animation.additive = YES;
         animation.removedOnCompletion = NO;
         animation.fillMode = kCAFillModeForwards;
-        [self.menuItemArray[i] addAnimation:animation forKey:@"rotationMenuItem"];
+        [((UIView*)self.menuItemArray[i]).layer addAnimation:animation forKey:@"rotationMenuItem"];
         
         angle += unitAngle;
     }
@@ -222,19 +227,19 @@
 -(void)hideMenuItemAnimation:(BOOL)isClockwise {
     CGFloat unitAngle = M_PI / (self.menuItemArray.count - 1) * 2 / 3;
     CGFloat angle = (self.menuItemArray.count - 1) * unitAngle + M_PI * 2 / 3;
-    if (!isClockwise) {
+    if (isClockwise) {
         angle -= (2 * M_PI);
     }
     for (NSInteger i = self.menuItemArray.count - 1; i >= 0; i--) {
         CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
-        animation.fromValue = [NSNumber numberWithFloat:0];
-        animation.toValue = [NSNumber numberWithFloat:angle];
+        animation.fromValue = [NSNumber numberWithFloat:angle];
+        animation.toValue = [NSNumber numberWithFloat:0];
         animation.duration = 0.75;
         animation.cumulative = YES;
         animation.additive = YES;
         animation.removedOnCompletion = NO;
         animation.fillMode = kCAFillModeForwards;
-        [self.menuItemArray[i] addAnimation:animation forKey:@"rotationMenuItem"];
+        [((UIView*)self.menuItemArray[i]).layer addAnimation:animation forKey:@"rotationMenuItem"];
         
         angle -= unitAngle;
     }
@@ -288,11 +293,12 @@
 -(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
     // 隐藏背景动画结束后把背景视图缩小
     if ([(NSString*)anim isEqualToString:@"hideBackgroundAnimation"]) {
-        self.frame = CGRectMake(-20, self.frame.size.height / 2 - 20, 45, 40);
+        self.bounds = CGRectMake(0, 0, MenuItemHight, MenuItemHight);
+        self.center = CGPointMake(5, [UIScreen mainScreen].bounds.size.height / 2);
         // 让菜单项和按钮看上去位置不变化
-        self.intersection.center = CGPointMake(25, self.frame.size.height / 2);
+        self.intersection.center = CGPointMake(20, self.frame.size.height / 2);
         for (UIView *item in self.menuItemArray) {
-            item.center = CGPointMake(25, self.frame.size.height / 2);
+            item.center = CGPointMake(20, self.frame.size.height / 2);
         }
     }
 }
