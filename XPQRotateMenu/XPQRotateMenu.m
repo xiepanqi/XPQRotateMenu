@@ -102,6 +102,10 @@
     }
 }
 
+-(NSString *)description {
+    return [NSString stringWithFormat:@"isExpand:%@ menuItem:%@", _expand ? @"YES" : @"NO", self.menuItemArray];
+}
+
 #pragma mark - 属性
 -(void)setIntersectionImage:(UIImage *)intersectionImage {
     if (intersectionImage == nil) {

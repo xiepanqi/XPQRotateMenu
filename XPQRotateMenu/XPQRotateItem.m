@@ -59,4 +59,17 @@
 -(void)setAttributedTitle:(NSAttributedString *)attributedTitle {
     [self.button setAttributedTitle:attributedTitle forState:UIControlStateNormal];
 }
+
+-(NSString *)description {
+    NSString *title = self.title;
+    NSString *attTitle = self.attributedTitle.string;
+    NSString *returnStr;
+    if (title == nil || [title isEqualToString:@""]) {
+        returnStr = [NSString stringWithFormat:@"attTitle:%@ index:%ld", attTitle, self.index];
+    }
+    else {
+        returnStr = [NSString stringWithFormat:@"title:%@ index:%ld", title, self.index];
+    }
+    return returnStr;
+}
 @end
