@@ -19,6 +19,8 @@
 @property (nonatomic, readonly, getter=isExpand) BOOL expand;
 /// 交汇处按钮图片
 @property (nonatomic) UIImage *intersectionImage;
+/// 背景图片，默认nil
+@property (nonatomic) UIImage *backgroundImage;
 /// 菜单显示时是向上方向，默认YES
 @property (nonatomic) BOOL showClockwise;
 /// 菜单隐藏时是向上方向，默认NO

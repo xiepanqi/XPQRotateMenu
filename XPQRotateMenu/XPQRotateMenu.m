@@ -13,6 +13,7 @@
 @interface XPQRotateMenu ()
 @property (nonatomic) NSMutableArray *menuItemArray;
 @property (nonatomic, weak) UIButton *intersection;
+@property (nonatomic, weak) UIImageView *backgroundImageView;
 @end
 
 @implementation XPQRotateMenu
@@ -114,6 +115,17 @@
 
 -(UIImage *)intersectionImage {
     return [self.intersection imageForState:UIControlStateNormal];
+}
+
+-(void)setBackgroundImage:(UIImage *)backgroundImage {
+    _backgroundImage = backgroundImage;
+    if (_backgroundImageView == nil) {
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectInset([UIScreen mainScreen].bounds, -20.0, 0.0)];
+        [self insertSubview:imageView atIndex:0];
+        _backgroundImageView = imageView;
+    }
+    _backgroundImageView.alpha = _expand ? 1.0 : 0.0;
+    _backgroundImageView.image = _backgroundImage;
 }
 
 #pragma mark - 左右滑动
@@ -268,6 +280,10 @@
     [UIView beginAnimations:@"showBackgroundAnimation" context:nil];
     [UIView setAnimationDuration:self.time];
     self.center = CGPointMake(self.center.x + 20, self.center.y);
+    if (self.backgroundImageView != nil) {
+        self.backgroundImageView.center = CGPointMake(self.backgroundImageView.center.x - 20, self.backgroundImageView.center.y);
+        self.backgroundImageView.alpha = 1.0;
+    }
     super.backgroundColor = self.backgroundColor;
     [UIView commitAnimations];
 }
@@ -281,6 +297,10 @@
     [UIView setAnimationDuration:self.time];
     [UIView setAnimationDelegate:self];
     self.center = CGPointMake(self.center.x - 20, self.center.y);
+    if (self.backgroundImageView != nil) {
+        self.backgroundImageView.center = CGPointMake(self.backgroundImageView.center.x + 20, self.backgroundImageView.center.y);
+        self.backgroundImageView.alpha = 0.0;
+    }
     super.backgroundColor = [self.backgroundColor colorWithAlphaComponent:0.0];
     [UIView commitAnimations];
 }
