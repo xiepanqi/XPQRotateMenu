@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import "XPQRotateMenu.h"
 
-@interface ViewController ()
+@interface ViewController () <XPQRotateMenuDelegate>
 
 @end
 
@@ -30,7 +30,8 @@
     NSArray *arr = @[@"菜单1",@"菜单2",@"菜单3",@"菜单4",attriString,@"菜单6",@"菜单7",@"菜单8",@"菜单9"];
     XPQRotateMenu *menu = [[XPQRotateMenu alloc] initWithTitleArray:arr];
     menu.intersectionImage = [UIImage imageNamed:@"cancleIcon"];
-    menu.backgroundImage = [UIImage imageNamed:@"1430121054613"];
+//    menu.backgroundImage = [UIImage imageNamed:@"1430121054613"];
+    menu.delegate = self;
     
     [self.view addSubview:menu];
 }
@@ -38,6 +39,10 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)didClickMenuItem:(XPQRotateItem *)menuItem {
+    NSLog(@"%@", menuItem);
 }
 
 @end
