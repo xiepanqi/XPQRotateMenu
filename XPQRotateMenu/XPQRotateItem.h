@@ -21,7 +21,7 @@
  *  @param action 回调函数
  *  @return 菜单项指针
  */
--(instancetype) initWithIndex:(NSInteger)index target:(id)target action:(SEL)action;
+-(instancetype) initWithIndex:(NSInteger)index upShadow:(BOOL)upShadow target:(id)target action:(SEL)action;
 
 /// 菜单项索引
 @property (nonatomic, readonly) NSInteger index;

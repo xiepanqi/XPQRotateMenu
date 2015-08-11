@@ -61,6 +61,7 @@
     self.center = CGPointMake(5, [UIScreen mainScreen].bounds.size.height / 2);
     self.menuItemArray = [NSMutableArray array];
     self.time = 0.75;
+    self.isUpToTop = YES;
     self.backgroundColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:1.0];
     super.backgroundColor = [self.backgroundColor colorWithAlphaComponent:0.0];
     self.showClockwise = YES;
@@ -80,8 +81,8 @@
 
 -(void)configSubview:(NSArray *)title {
     if (title.count > 1) {
-        for (NSInteger i = title.count - 1; i >= 0; i--) {
-            XPQRotateItem *menuItem = [[XPQRotateItem alloc] initWithIndex:i target:self action:@selector(actionMenuItem:)];
+        for (NSInteger i = 0; i < title.count; i++) {
+            XPQRotateItem *menuItem = [[XPQRotateItem alloc] initWithIndex:i upShadow:self.isUpToTop target:self action:@selector(actionMenuItem:)];
             if ([title[i] isKindOfClass:[NSString class]]) {
                 menuItem.title = title[i];
             }
@@ -91,7 +92,12 @@
             
             menuItem.transform = CGAffineTransformMakeRotation(M_PI);
             menuItem.center = CGPointMake(20, 20);
-            [self addSubview:menuItem];
+            if (self.isUpToTop) {
+                [self insertSubview:menuItem atIndex:0];
+            }
+            else {
+                [self addSubview:menuItem];
+            }
             [self.menuItemArray addObject:menuItem];
         }
         

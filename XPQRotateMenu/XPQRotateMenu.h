@@ -17,6 +17,8 @@
 @property (nonatomic) UIColor *backgroundColor;
 /// 是否展开
 @property (nonatomic, readonly, getter=isExpand) BOOL expand;
+/// 是否上方菜单放上面
+@property (nonatomic) BOOL isUpToTop;
 /// 交汇处按钮图片
 @property (nonatomic) UIImage *intersectionImage;
 /// 背景图片，默认nil
