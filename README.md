@@ -1,5 +1,6 @@
 # XPQRotateMenu
 ## 由来
+这个扇形菜单是从仿照ZQLRotateMenu（https://github.com/zangqilong198812/ZQLRotateMenu ）开始的，然后慢慢的完善扩展。
 ## 效果图
 
 ![Flipboard playing multiple GIFs](https://github.com/xiepanqi/XPQRotateMenu/blob/master/Dome.gif)
