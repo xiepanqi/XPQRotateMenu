@@ -4,7 +4,7 @@
 
 ![Flipboard playing multiple GIFs](https://github.com/xiepanqi/XPQRotateMenu/blob/master/Dome.gif)
 ## 使用
-使用此菜单只需把（XPQRotateItem.h/ XPQRotateItem.m/XPQRotateMenu.h/XPQRotateMenu.m）4个文件导入工程，再在需要的试图控制器类中添加
+使用此菜单只需把（XPQRotateItem.h/XPQRotateItem.m/XPQRotateMenu.h/XPQRotateMenu.m/XPQRotateMenuDelegate.h）5个文件导入工程，再在需要的试图控制器类中添加
 
     #import "XPQRotateMenu.h"
 然后再在viewDidLoad中添加以下3句代码就行了。
@@ -23,4 +23,19 @@
 ###expand（isExpand）
 菜单是否展开，只读属性。展开时为YES，收缩时为NO。
 ###isUpToTop
-是否上方菜单放上面。这个文字有点表达不清楚，下面贴两张效果图。
+是否上方菜单放上面。这个文字有点表达不清楚，下面贴两张效果图。默认值是YES。
+
+![Flipboard playing multiple GIFs](https://github.com/xiepanqi/XPQRotateMenu/blob/master/ReadMeImage/isUpToTop_YES.png)
+![Flipboard playing multiple GIFs](https://github.com/xiepanqi/XPQRotateMenu/blob/master/ReadMeImage/isUpToTop_NO.png)
+###intersectionImage
+交汇按钮图片，如果为nil则显示字符“➕”。默认为nil。
+###backgroundImage
+菜单展开时的背景图片，展开过程中背景图慢慢显示，收缩过程中慢慢消失。默认为nil。
+###showClockwise
+菜单展开动画是否沿顺时针。YES顺时针展开，NO逆时针展开。默认YES。
+###hideClockwise
+菜单收缩动画是否沿顺时针。YES顺时针展开，NO逆时针展开。默认NO。
+###handleHideEnable
+是否启用手势收缩菜单。启用后上下滑动手势可以收缩菜单，上滑逆时针收缩，下滑顺时针收缩。默认YES。
+###delegate
+代理
