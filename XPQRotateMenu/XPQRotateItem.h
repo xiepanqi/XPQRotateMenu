@@ -21,7 +21,7 @@
  *  @param action 回调函数
  *  @return 菜单项指针
  */
--(instancetype) initWithIndex:(NSInteger)index upShadow:(BOOL)upShadow target:(id)target action:(SEL)action;
+-(instancetype) initWithIndex:(NSInteger)index target:(id)target action:(SEL)action;
 
 /// 菜单项索引
 @property (nonatomic, readonly) NSInteger index;
@@ -29,4 +29,6 @@
 @property (nonatomic) NSString *title;
 /// 带属性标题
 @property (nonatomic) NSAttributedString *attributedTitle;
+/// 阴影方向，YES向上，NO向下
+@property (nonatomic) BOOL upShadow;
 @end

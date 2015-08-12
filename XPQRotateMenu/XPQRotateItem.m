@@ -14,7 +14,7 @@
 
 @implementation XPQRotateItem
 
--(instancetype)initWithIndex:(NSInteger)index upShadow:(BOOL)upShadow target:(id)target action:(SEL)action {
+-(instancetype)initWithIndex:(NSInteger)index target:(id)target action:(SEL)action {
     CGFloat itemWidth = [UIScreen mainScreen].bounds.size.height / 2;
     self = [super initWithFrame:CGRectMake(0, 0, itemWidth, MenuItemHight)];
     if (self) {
@@ -25,7 +25,7 @@
         // 阴影效果
         self.layer.shouldRasterize = YES;
         self.layer.shadowColor = [UIColor grayColor].CGColor;
-        self.layer.shadowOffset = CGSizeMake(-2, upShadow ? 2 : -2);
+        self.layer.shadowOffset = CGSizeMake(-2, 2);
         self.layer.shadowOpacity = 0.9;
         
         UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(MenuItemHight + 10, 0, self.frame.size.width - 70, self.frame.size.height)];
@@ -58,6 +58,11 @@
 
 -(void)setAttributedTitle:(NSAttributedString *)attributedTitle {
     [self.button setAttributedTitle:attributedTitle forState:UIControlStateNormal];
+}
+
+-(void)setUpShadow:(BOOL)upShadow {
+    _upShadow = upShadow;
+    self.layer.shadowOffset = CGSizeMake(-2, upShadow ? 2 : -2);    
 }
 
 -(NSString *)description {

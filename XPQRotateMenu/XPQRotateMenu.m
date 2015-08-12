@@ -82,7 +82,7 @@
 -(void)configSubview:(NSArray *)title {
     if (title.count > 1) {
         for (NSInteger i = 0; i < title.count; i++) {
-            XPQRotateItem *menuItem = [[XPQRotateItem alloc] initWithIndex:i upShadow:self.isUpToTop target:self action:@selector(actionMenuItem:)];
+            XPQRotateItem *menuItem = [[XPQRotateItem alloc] initWithIndex:i target:self action:@selector(actionMenuItem:)];
             if ([title[i] isKindOfClass:[NSString class]]) {
                 menuItem.title = title[i];
             }
@@ -139,6 +139,25 @@
     }
     _backgroundImageView.alpha = _expand ? 1.0 : 0.0;
     _backgroundImageView.image = _backgroundImage;
+}
+
+-(void)setIsUpToTop:(BOOL)isUpToTop {
+    _isUpToTop = isUpToTop;
+    if (isUpToTop) {
+        for (XPQRotateItem *item in self.menuItemArray) {
+            [self sendSubviewToBack:item];
+            item.upShadow = isUpToTop;
+        }
+    }
+    else {
+        for (NSUInteger i = self.menuItemArray.count - 1; i < self.menuItemArray.count; i--) {
+            [self sendSubviewToBack:self.menuItemArray[i]];
+            ((XPQRotateItem*)self.menuItemArray[i]).upShadow = isUpToTop;
+        }
+    }
+    if (self.backgroundImageView) {
+        [self sendSubviewToBack:self.backgroundImageView];
+    }
 }
 
 #pragma mark - 左右滑动
