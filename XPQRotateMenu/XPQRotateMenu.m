@@ -67,6 +67,7 @@
     self.showClockwise = YES;
     self.hideClockwise = NO;
     self.handleHideEnable = YES;
+    self.type = XPQRotateMenuPositionTypeLeft;
     _expand = NO;
         
     // 上滑响应

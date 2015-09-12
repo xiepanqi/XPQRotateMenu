@@ -30,7 +30,8 @@
     NSArray *arr = @[@"菜单1",@"菜单2",@"菜单3",@"菜单4",attriString,@"菜单6",@"菜单7",@"菜单8",@"菜单9"];
     XPQRotateMenu *menu = [[XPQRotateMenu alloc] initWithTitleArray:arr];
     menu.intersectionImage = [UIImage imageNamed:@"cancleIcon"];
-    menu.backgroundImage = [UIImage imageNamed:@"1430121054613"];
+//    menu.backgroundColor = [UIColor whiteColor];
+//    menu.backgroundImage = [UIImage imageNamed:@"1430121054613"];
 //    menu.isUpToTop = NO;
     menu.delegate = self;
     

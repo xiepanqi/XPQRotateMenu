@@ -10,6 +10,18 @@
 #import "XPQRotateItem.h"
 #import "XPQRotateMenuDelegate.h"
 
+/**
+ 菜单交汇点位置。
+ */
+typedef enum : NSUInteger {
+    XPQRotateMenuPositionTypeLeft,
+    XPQRotateMenuPositionTypeLeftDown,
+    XPQRotateMenuPositionTypeLeftUp,
+    XPQRotateMenuPositionTypeRight,
+    XPQRotateMenuPositionTypeRightDown,
+    XPQRotateMenuPositionTypeRightUp,
+} XPQRotateMenuPositionType;
+
 @interface XPQRotateMenu : UIView
 /// 动画时间,默认0.75
 @property (nonatomic) NSTimeInterval time;
@@ -29,6 +41,8 @@
 @property (nonatomic) BOOL hideClockwise;
 /// 启用上下滑动手势隐藏菜单,默认YES
 @property (nonatomic) BOOL handleHideEnable;
+/// 交汇点位置
+@property (nonatomic) XPQRotateMenuPositionType type;
 /// 代理
 @property (nonatomic, weak) id<XPQRotateMenuDelegate> delegate;
 
