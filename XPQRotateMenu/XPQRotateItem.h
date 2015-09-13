@@ -13,6 +13,9 @@
 
 #define MenuItemTag         0x400
 
+#define ScreenWidth     [UIScreen mainScreen].bounds.size.width
+#define ScreenHeight    [UIScreen mainScreen].bounds.size.height
+
 @interface XPQRotateItem : UIView
 /**
  *  @brief  初始化菜单项
@@ -31,4 +34,6 @@
 @property (nonatomic) NSAttributedString *attributedTitle;
 /// 阴影方向，YES向上，NO向下
 @property (nonatomic) BOOL upShadow;
+/// 菜单是否停靠在左侧
+@property (nonatomic) BOOL isLeft;
 @end

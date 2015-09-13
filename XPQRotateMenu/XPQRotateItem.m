@@ -20,7 +20,7 @@
     if (self) {
         self.backgroundColor = [UIColor whiteColor];
         self.layer.cornerRadius = 5;
-        self.layer.anchorPoint = CGPointMake(MenuItemAnchor / [UIScreen mainScreen].bounds.size.width, 0.5);
+        self.layer.anchorPoint = CGPointMake(MenuItemAnchor / ScreenWidth, 0.5);
         
         // 阴影效果
         self.layer.shouldRasterize = YES;
@@ -28,6 +28,7 @@
         self.layer.shadowOffset = CGSizeMake(-2, 2);
         self.layer.shadowOpacity = 0.9;
         
+        _isLeft = YES;
         UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(MenuItemHight + 10, 0, self.frame.size.width - 70, self.frame.size.height)];
         button.tag = MenuItemTag + index;
         [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -63,6 +64,20 @@
 -(void)setUpShadow:(BOOL)upShadow {
     _upShadow = upShadow;
     self.layer.shadowOffset = CGSizeMake(-2, upShadow ? 2 : -2);    
+}
+
+-(void)setIsLeft:(BOOL)isLeft {
+    _isLeft = isLeft;
+    if (isLeft) {
+        self.button.frame = CGRectMake(MenuItemHight + 10, 0, self.frame.size.width - 70, self.frame.size.height);
+        self.button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+        self.layer.anchorPoint = CGPointMake(MenuItemAnchor / ScreenWidth, 0.5);
+    }
+    else {
+        self.button.frame = CGRectMake(20, 0, self.frame.size.width - 70, self.frame.size.height);
+        self.button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        self.layer.anchorPoint = CGPointMake(1 - MenuItemAnchor / ScreenWidth, 0.5);
+    }
 }
 
 -(NSString *)description {

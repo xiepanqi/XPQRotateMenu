@@ -58,7 +58,6 @@
 
 -(void)configSelf {
     self.bounds = CGRectMake(0, 0, MenuItemHight, MenuItemHight);
-    self.center = CGPointMake(5, [UIScreen mainScreen].bounds.size.height / 2);
     self.menuItemArray = [NSMutableArray array];
     self.time = 0.75;
     self.isUpToTop = YES;
@@ -84,15 +83,23 @@
     if (title.count > 1) {
         for (NSInteger i = 0; i < title.count; i++) {
             XPQRotateItem *menuItem = [[XPQRotateItem alloc] initWithIndex:i target:self action:@selector(actionMenuItem:)];
+            // 如果是字符
             if ([title[i] isKindOfClass:[NSString class]]) {
                 menuItem.title = title[i];
             }
+            // 如果是富文本
             else if ([title[i] isKindOfClass:[NSAttributedString class]]) {
                 menuItem.attributedTitle = title[i];
             }
-            
+            // 如果是图片
+            else if ([title[i] isKindOfClass:[UIImage class]]) {
+                
+            }
+
             menuItem.transform = CGAffineTransformMakeRotation(M_PI);
             menuItem.center = CGPointMake(20, 20);
+
+            
             if (self.isUpToTop) {
                 [self insertSubview:menuItem atIndex:0];
             }
@@ -161,10 +168,31 @@
     }
 }
 
-#pragma mark - 左右滑动
+-(void)setType:(XPQRotateMenuPositionType)type {
+    _type = type;
+    if (type < XPQRotateMenuPositionTypeRight) {
+        self.center = CGPointMake(5, ScreenHeight / 2);
+        for (XPQRotateItem *item in self.menuItemArray) {
+            item.isLeft = YES;
+        }
+    }
+    else {
+        self.center = CGPointMake(ScreenWidth - 5, ScreenHeight / 2);
+        for (XPQRotateItem *item in self.menuItemArray) {
+            item.isLeft = NO;
+        }
+    }
+}
+
+#pragma mark - 上下滑动
 -(void)handleSwipeFrom:(UISwipeGestureRecognizer *)recognizer {
     if (self.handleHideEnable) {
-        [self hideMenu:(recognizer.direction == UISwipeGestureRecognizerDirectionDown)];
+        if (self.type < XPQRotateMenuPositionTypeRight) {
+            [self hideMenu:(recognizer.direction == UISwipeGestureRecognizerDirectionDown)];
+        }
+        else {
+            [self hideMenu:(recognizer.direction == UISwipeGestureRecognizerDirectionUp)];
+        }
     }
 }
 
@@ -210,11 +238,14 @@
         }
     }
     
+    // 先判断是否已经展开了
     if (!self.expand && self.menuItemArray.count > 1) {
         _expand = YES;
-        
+        // 交汇按钮转动
         [self rotateButtounAnimation:isClockwise];
+        // 显示背景
         [self showBackgroundAnimation];
+        // 转动菜单
         [self showMenuItemAnimation:isClockwise];
     }
     
@@ -230,11 +261,14 @@
         }
     }
     
+    // 先判断是否已经隐藏了
     if (self.expand && self.menuItemArray.count > 1) {
         _expand = NO;
-        
+        // 交汇按钮转动
         [self rotateButtounAnimation:isClockwise];
+        // 隐藏背景
         [self hideBackgroundAnimation];
+        // 转动菜单
         [self hideMenuItemAnimation:isClockwise];
     }
     
@@ -253,26 +287,6 @@
  *  @param isClockwise 旋转方向，YES-顺时针,NO-逆时钟
  */
 -(void)showMenuItemAnimation:(BOOL)isClockwise {
-//    CGFloat unitAngle = M_PI / (self.menuItemArray.count - 1) * 2 / 3;
-//    CGFloat angle = M_PI * 2 / 3;
-//    if (!isClockwise) {
-//        angle -= (2 * M_PI);
-//    }
-//    for (int i = 0; i < self.menuItemArray.count; i++) {
-//        CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
-//        animation.fromValue = [NSNumber numberWithFloat:0];
-//        animation.toValue = [NSNumber numberWithFloat:angle];
-//        animation.duration = self.time;
-//        animation.cumulative = YES;
-//        animation.additive = YES;
-//        animation.removedOnCompletion = NO;
-//        animation.fillMode = kCAFillModeForwards;
-//        animation.delegate = self;
-//        [((UIView*)self.menuItemArray[i]).layer addAnimation:animation forKey:@"rotationMenuItem"];
-//        
-//        angle += unitAngle;
-//    }
-    
     CGFloat unitAngle = M_PI / (self.menuItemArray.count - 1) * 2 / 3;
     CGFloat angle = -M_PI / 3;
     if (!isClockwise) {
@@ -297,25 +311,6 @@
  *  @param isUp 旋转方向，YES-顺时针,NO-逆时钟
  */
 -(void)hideMenuItemAnimation:(BOOL)isClockwise {
-//    CGFloat unitAngle = M_PI / (self.menuItemArray.count - 1) * 2 / 3;
-//    CGFloat angle = (self.menuItemArray.count) * unitAngle + M_PI * 2 / 3;
-//    if (isClockwise) {
-//        angle -= (2 * M_PI);
-//    }
-//    for (NSInteger i = self.menuItemArray.count - 1; i >= 0; i--) {
-//        CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
-//        animation.fromValue = [NSNumber numberWithFloat:angle];
-//        animation.toValue = [NSNumber numberWithFloat:0];
-//        animation.duration = self.time;
-//        animation.cumulative = YES;
-//        animation.additive = YES;
-//        animation.removedOnCompletion = NO;
-//        animation.fillMode = kCAFillModeForwards;
-//        [((UIView*)self.menuItemArray[i]).layer addAnimation:animation forKey:@"rotationMenuItem"];
-//        
-//        angle -= unitAngle;
-//    }
-    
     CGFloat unitAngle = M_PI / (self.menuItemArray.count - 1) * 2 / 3;
     CGFloat angle = (self.menuItemArray.count) * unitAngle - M_PI * 1 / 3 + M_PI_4;
     if (isClockwise) {
@@ -341,21 +336,34 @@
  *  @brief  背景显示动画
  */
 -(void)showBackgroundAnimation {
+    CGFloat backgroudMoveSize = 0;
+    CGFloat buttonPositionX = 0;
+    if (self.type < XPQRotateMenuPositionTypeRight) {
+        backgroudMoveSize = 20;
+        buttonPositionX = 25;
+    }
+    else {
+        backgroudMoveSize = -20;
+        buttonPositionX = ScreenWidth + 15;
+    }
     // 先把背景铺满全屏，
-    self.frame = CGRectMake(-20, 0, [UIScreen mainScreen].bounds.size.width + 25, [UIScreen mainScreen].bounds.size.height);
+    self.frame = CGRectMake(-20, 0, ScreenWidth + 40, ScreenHeight);
     // 和调整好按钮的位置
-    self.intersection.center = CGPointMake(25, self.frame.size.height / 2);
+    self.intersection.center = CGPointMake(buttonPositionX, self.frame.size.height / 2);
     for (UIView *item in self.menuItemArray) {
-        item.center = CGPointMake(25, self.frame.size.height / 2);
+        item.center = CGPointMake(buttonPositionX, self.frame.size.height / 2);
     }
     // 慢慢显示背景，并向右移动使菜单完全显示
     [UIView beginAnimations:@"showBackgroundAnimation" context:nil];
     [UIView setAnimationDuration:self.time];
-    self.center = CGPointMake(self.center.x + 20, self.center.y);
+    // 整体像右移20像素
+    self.center = CGPointMake(self.center.x + backgroudMoveSize, self.center.y);
     if (self.backgroundImageView != nil) {
-        self.backgroundImageView.center = CGPointMake(self.backgroundImageView.center.x - 20, self.backgroundImageView.center.y);
+        // 为了让背景看起来没有变化，所以反方向移动20像素
+        self.backgroundImageView.center = CGPointMake(self.backgroundImageView.center.x - backgroudMoveSize, self.backgroundImageView.center.y);
         self.backgroundImageView.alpha = 1.0;
     }
+    // 设置背景色
     super.backgroundColor = self.backgroundColor;
     [UIView commitAnimations];
 }
@@ -364,13 +372,20 @@
  *  @brief  背景隐藏动画
  */
 -(void)hideBackgroundAnimation {
+    CGFloat moveSize = 0;
+    if (self.type < XPQRotateMenuPositionTypeRight) {
+        moveSize = 20;
+    }
+    else {
+        moveSize = -20;
+    }
     // 慢慢隐藏背景，并向左移动使部分菜单被遮掩
     [UIView beginAnimations:@"hideBackgroundAnimation" context:nil];
     [UIView setAnimationDuration:self.time];
     [UIView setAnimationDelegate:self];
-    self.center = CGPointMake(self.center.x - 20, self.center.y);
+    self.center = CGPointMake(self.center.x - moveSize, self.center.y);
     if (self.backgroundImageView != nil) {
-        self.backgroundImageView.center = CGPointMake(self.backgroundImageView.center.x + 20, self.backgroundImageView.center.y);
+        self.backgroundImageView.center = CGPointMake(self.backgroundImageView.center.x + moveSize, self.backgroundImageView.center.y);
         self.backgroundImageView.alpha = 0.0;
     }
     super.backgroundColor = [self.backgroundColor colorWithAlphaComponent:0.0];
@@ -395,7 +410,12 @@
     if ([anim isKindOfClass:[NSString class]]) {
         if ([(NSString*)anim isEqualToString:@"hideBackgroundAnimation"]) {
             self.bounds = CGRectMake(0, 0, MenuItemHight, MenuItemHight);
-            self.center = CGPointMake(5, [UIScreen mainScreen].bounds.size.height / 2);
+            if (self.type < XPQRotateMenuPositionTypeRight) {
+                self.center = CGPointMake(5, ScreenHeight / 2);
+            }
+            else {
+                self.center = CGPointMake(ScreenWidth - 5, ScreenHeight / 2);
+            }
             // 让菜单项和按钮看上去位置不变化
             self.intersection.center = CGPointMake(20, self.frame.size.height / 2);
             for (UIView *item in self.menuItemArray) {
