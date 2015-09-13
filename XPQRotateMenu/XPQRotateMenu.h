@@ -14,13 +14,13 @@
  菜单交汇点位置。
  */
 typedef enum : NSUInteger {
-    XPQRotateMenuPositionTypeLeft,
-    XPQRotateMenuPositionTypeLeftDown,
-    XPQRotateMenuPositionTypeLeftUp,
-    XPQRotateMenuPositionTypeRight,
-    XPQRotateMenuPositionTypeRightDown,
-    XPQRotateMenuPositionTypeRightUp,
-} XPQRotateMenuPositionType;
+    XPQRotateMenuDependPositionLeft,
+    XPQRotateMenuDependPositionLeftDown,
+    XPQRotateMenuDependPositionLeftUp,
+    XPQRotateMenuDependPositionRight,
+    XPQRotateMenuDependPositionRightDown,
+    XPQRotateMenuDependPositionRightUp,
+} XPQRotateMenuDependPosition;
 
 @interface XPQRotateMenu : UIView
 /// 动画时间,默认0.75
@@ -42,7 +42,7 @@ typedef enum : NSUInteger {
 /// 启用上下滑动手势隐藏菜单,默认YES
 @property (nonatomic) BOOL handleHideEnable;
 /// 交汇点位置
-@property (nonatomic) XPQRotateMenuPositionType type;
+@property (nonatomic) XPQRotateMenuDependPosition dependPosition;
 /// 代理
 @property (nonatomic, weak) id<XPQRotateMenuDelegate> delegate;
 

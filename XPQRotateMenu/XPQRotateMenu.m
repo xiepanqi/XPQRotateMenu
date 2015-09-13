@@ -66,7 +66,7 @@
     self.showClockwise = YES;
     self.hideClockwise = NO;
     self.handleHideEnable = YES;
-    self.type = XPQRotateMenuPositionTypeLeft;
+    self.dependPosition = XPQRotateMenuDependPositionLeft;
     _expand = NO;
         
     // 上滑响应
@@ -168,9 +168,9 @@
     }
 }
 
--(void)setType:(XPQRotateMenuPositionType)type {
-    _type = type;
-    if (type < XPQRotateMenuPositionTypeRight) {
+-(void)setDependPosition:(XPQRotateMenuDependPosition)dependPosition {
+    _dependPosition = dependPosition;
+    if (dependPosition < XPQRotateMenuDependPositionRight) {
         self.center = CGPointMake(5, ScreenHeight / 2);
         for (XPQRotateItem *item in self.menuItemArray) {
             item.isLeft = YES;
@@ -187,7 +187,7 @@
 #pragma mark - 上下滑动
 -(void)handleSwipeFrom:(UISwipeGestureRecognizer *)recognizer {
     if (self.handleHideEnable) {
-        if (self.type < XPQRotateMenuPositionTypeRight) {
+        if (self.dependPosition < XPQRotateMenuDependPositionRight) {
             [self hideMenu:(recognizer.direction == UISwipeGestureRecognizerDirectionDown)];
         }
         else {
@@ -338,7 +338,7 @@
 -(void)showBackgroundAnimation {
     CGFloat backgroudMoveSize = 0;
     CGFloat buttonPositionX = 0;
-    if (self.type < XPQRotateMenuPositionTypeRight) {
+    if (self.dependPosition < XPQRotateMenuDependPositionRight) {
         backgroudMoveSize = 20;
         buttonPositionX = 25;
     }
@@ -373,7 +373,7 @@
  */
 -(void)hideBackgroundAnimation {
     CGFloat moveSize = 0;
-    if (self.type < XPQRotateMenuPositionTypeRight) {
+    if (self.dependPosition < XPQRotateMenuDependPositionRight) {
         moveSize = 20;
     }
     else {
@@ -410,7 +410,7 @@
     if ([anim isKindOfClass:[NSString class]]) {
         if ([(NSString*)anim isEqualToString:@"hideBackgroundAnimation"]) {
             self.bounds = CGRectMake(0, 0, MenuItemHight, MenuItemHight);
-            if (self.type < XPQRotateMenuPositionTypeRight) {
+            if (self.dependPosition < XPQRotateMenuDependPositionRight) {
                 self.center = CGPointMake(5, ScreenHeight / 2);
             }
             else {
