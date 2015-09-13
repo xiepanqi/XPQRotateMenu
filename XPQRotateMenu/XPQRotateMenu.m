@@ -289,6 +289,12 @@
 -(void)showMenuItemAnimation:(BOOL)isClockwise {
     CGFloat unitAngle = M_PI / (self.menuItemArray.count - 1) * 2 / 3;
     CGFloat angle = -M_PI / 3;
+    // 右侧处理
+    if (self.dependPosition >= XPQRotateMenuDependPositionRight) {
+        unitAngle *= -1;
+        angle += M_PI * 2 / 3;
+    }
+    // 逆时针处理
     if (!isClockwise) {
         angle -= (2 * M_PI);
     }
@@ -313,6 +319,12 @@
 -(void)hideMenuItemAnimation:(BOOL)isClockwise {
     CGFloat unitAngle = M_PI / (self.menuItemArray.count - 1) * 2 / 3;
     CGFloat angle = (self.menuItemArray.count) * unitAngle - M_PI * 1 / 3 + M_PI_4;
+    // 右侧处理
+    if (self.dependPosition >= XPQRotateMenuDependPositionRight) {
+        unitAngle *= -1;
+        angle += M_PI * 2 / 3;
+    }
+    // 逆时针处理
     if (isClockwise) {
         angle -= (2 * M_PI);
     }

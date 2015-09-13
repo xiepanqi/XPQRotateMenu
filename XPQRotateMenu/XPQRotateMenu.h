@@ -11,7 +11,7 @@
 #import "XPQRotateMenuDelegate.h"
 
 /**
- 菜单交汇点位置。
+ 菜单吸附位置类型。
  */
 typedef enum : NSUInteger {
     XPQRotateMenuDependPositionLeft,
@@ -41,7 +41,7 @@ typedef enum : NSUInteger {
 @property (nonatomic) BOOL hideClockwise;
 /// 启用上下滑动手势隐藏菜单,默认YES
 @property (nonatomic) BOOL handleHideEnable;
-/// 交汇点位置
+/// 菜单吸附位置
 @property (nonatomic) XPQRotateMenuDependPosition dependPosition;
 /// 代理
 @property (nonatomic, weak) id<XPQRotateMenuDelegate> delegate;
