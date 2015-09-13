@@ -38,5 +38,9 @@
 菜单收缩动画是否沿顺时针。YES顺时针展开，NO逆时针展开。默认NO。
 ###handleHideEnable
 是否启用手势收缩菜单。启用后上下滑动手势可以收缩菜单，上滑逆时针收缩，下滑顺时针收缩。默认YES。
+###dependPosition
+菜单吸附的位置。枚举XPQRotateMenuDependPosition类型，暂只支持XPQRotateMenuDependPositionLeft和XPQRotateMenuDependPositionRight。效果如下：
+![Flipboard playing multiple GIFs](https://github.com/xiepanqi/XPQRotateMenu/blob/master/ReadMeImage/XPQRotateMenuDependPositionLeft.png)
+![Flipboard playing multiple GIFs](https://github.com/xiepanqi/XPQRotateMenu/blob/master/ReadMeImage/XPQRotateMenuDependPositionRight.png)
 ###delegate
 代理
